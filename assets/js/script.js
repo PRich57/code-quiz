@@ -1,4 +1,5 @@
 // VARIABLE DECLARATIONS
+// Create object array with each object containing 
 
 // Declare timer variable with starting time
 
