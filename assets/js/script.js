@@ -6,8 +6,6 @@ var header = document.getElementById("header");
 console.log(header);
 // timerEl will be the timer element
 var timerEl = document.createElement("p");
-// Declare timer variable with starting time
-var time = 75;
 // h2El will hold the current question
 var h2El = document.createElement("h2");
 // listEl will hold the current list of possible answers
@@ -17,9 +15,6 @@ var li1 = document.createElement("li");
 var li2 = document.createElement("li");
 var li3 = document.createElement("li");
 var li4 = document.createElement("li");
-
-// Update the text nodes of the elements that don't alter text
-timerEl.textContent = "Time: " + time;
 
 // Append start page to the DOM
 header.appendChild(timerEl);
@@ -81,8 +76,25 @@ var quiz = [
 
 
 // FUNCTIONS
-// Create time interval function
+// Create countdown function
+function countdown() {
+  timeLeft = 75;
 
+  var timeInterval = setInterval(function() {
+    timeLeft--;
+    timerEl.textContent = "Time: " + timeLeft;
+    
+    // Exit condition
+    if (timeLeft === 0) {
+      displayScore();
+      clearInterval(timeInterval);
+    }
+  }, 1000);
+}
+
+function displayScore() {
+  var score = timeLeft;
+}
 // While time != 0 && value at array variable != undefined
 
 // Add multiple choice question and answers to screen
