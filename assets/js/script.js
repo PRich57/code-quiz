@@ -2,18 +2,12 @@
 
 // Create html elements and store them in variables
 var body = document.body;
-// Header will contain the view high scores and timer elements
-var header = document.createElement("header");
-// scoresEl will contain an anchor to a high scores page
-var scoresEl = document.createElement("a");
+var header = document.getElementById("header");
+console.log(header);
 // timerEl will be the timer element
 var timerEl = document.createElement("p");
-// main element will hold the main content of the quiz
-var main = document.createElement("main");
-// startEl will be the start button element
-var startEl = document.createElement("button");
-// h1El will hold the header of the start button page
-var h1El = document.createElement("h1");
+// Declare timer variable with starting time
+var time = 75;
 // h2El will hold the current question
 var h2El = document.createElement("h2");
 // listEl will hold the current list of possible answers
@@ -25,11 +19,64 @@ var li3 = document.createElement("li");
 var li4 = document.createElement("li");
 
 // Update the text nodes of the elements that don't alter text
-h1El.textContent = "Welcome to the Code Quiz! Press the Start button to begin";
-//
-// Create object array with each object containing 
+timerEl.textContent = "Time: " + time;
 
-// Declare timer variable with starting time
+// Append start page to the DOM
+header.appendChild(timerEl);
+
+// Create object array with each object containing questions, answers, and correctAnswer properties
+var quiz = [
+  {
+    question: "Question 1",
+    answers: {
+      a: "A",
+      b: "B",
+      c: "C",
+      d: "D",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "Question 2",
+    answers: {
+      a: "A",
+      b: "B",
+      c: "C",
+      d: "D",
+    },
+    correctAnswer: "d",
+  },
+  {
+    question: "Question 3",
+    answers: {
+      a: "A",
+      b: "B",
+      c: "C",
+      d: "D",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "Question 4",
+    answers: {
+      a: "A",
+      b: "B",
+      c: "C",
+      d: "D",
+    },
+    correctAnswer: "a",
+  },
+  {
+    question: "Question 5",
+    answers: {
+      a: "A",
+      b: "B",
+      c: "C",
+      d: "D",
+    },
+    correctAnswer: "c",
+  },
+];
 
 
 
@@ -42,17 +89,16 @@ h1El.textContent = "Welcome to the Code Quiz! Press the Start button to begin";
 
 // Internal function upon button click event listener
 
-  // Add hr between last multiple choice option and display of Correct or Wrong
+// Add hr between last multiple choice option and display of Correct or Wrong
 
-  // If !choice, decrement timer variable by 5
+// If !choice, decrement timer variable by 5
 
-  // Display Wrong beneath hr
+// Display Wrong beneath hr
 
-  // Else
+// Else
 
-  // Display Correct beneath hr
+// Display Correct beneath hr
 
 // Increment multipleChoice array for next question and possible answers
-
 
 // EVENT LISTENERS
