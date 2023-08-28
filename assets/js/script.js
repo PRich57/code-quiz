@@ -100,26 +100,37 @@ function countdown() {
 }
 
 
-
+h2El.textContent = quiz[0].question;
+li1.textContent = quiz[0].answers.a;
+li2.textContent = quiz[0].answers.b;
+li3.textContent = quiz[0].answers.c;
+li4.textContent = quiz[0].answers.d;
+console.log(h2El);
+console.log(li1);
+console.log(li2);
+console.log(li3);
+console.log(li4);
 // FIGURE THIS OUT
-function myQuiz() {
-  var questionNumber = 1;
-  // For each iteration, add next question and possible answers
-  questionNumber++;
+// function myQuiz() {
+//   
+//   // For each iteration, add next question and possible answers
 
-  // while quiz[index] is not undefined
-  while (quiz[questionNumber] !== undefined) {
-    // Clear out main content
-    main.textContent = " ";
-    // Add value of each corresponding key in the quiz object array
-    h2El.textContent = quiz[questionNumber].question;
-    li1.textContent = quiz[questionNumber].answers.a;
-    li2.textContent = quiz[questionNumber].answers.b;
-    li3.textContent = quiz[questionNumber].answers.c;
-    li4.textContent = quiz[questionNumber].answers.d;
-  }
-}
-myQuiz();
+//   for (var i = 0; i < quiz.length; i++) {
+//     if (quiz[i] !== undefined) {
+  //      addEventListener here
+  //     // Clear out main content
+  //     main.textContent = " ";
+  //  
+         // Add value of each corresponding key in the quiz object array
+  //     h2El.textContent = quiz[i].question;
+  //     li1.textContent = quiz[i].answers.a;
+  //     li2.textContent = quiz[i].answers.b;
+  //     li3.textContent = quiz[i].answers.c;
+  //     li4.textContent = quiz[i].answers.d;
+  //   }
+//   }
+// }
+// myQuiz();
 
 // While time != 0 && value at array variable != undefined
 
