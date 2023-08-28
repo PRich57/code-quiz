@@ -22,7 +22,7 @@ var button1 = document.createElement("button");
 var button2 = document.createElement("button");
 var button3 = document.createElement("button");
 var button4 = document.createElement("button");
-// Create 
+// Create
 
 // APPEND ELEMENTS
 header.appendChild(timerEl);
@@ -42,106 +42,69 @@ li4.appendChild(button4);
 var quiz = [
   {
     question: "Question 1",
-    choices: {
-      a: "A",
-      b: "B",
-      c: "C",
-      d: "D",
-    },
-    correctAnswer: "b",
+    choices: ["A", "B", "C", "D"],
+    correctAnswer: "d",
   },
   {
     question: "Question 2",
-    choices: {
-      a: "A",
-      b: "B",
-      c: "C",
-      d: "D",
-    },
+    choices: ["A", "B", "C", "D"],
     correctAnswer: "d",
   },
   {
     question: "Question 3",
-    choices: {
-      a: "A",
-      b: "B",
-      c: "C",
-      d: "D",
-    },
-    correctAnswer: "b",
+    choices: ["A", "B", "C", "D"],
+    correctAnswer: "d",
   },
   {
     question: "Question 4",
-    choices: {
-      a: "A",
-      b: "B",
-      c: "C",
-      d: "D",
-    },
-    correctAnswer: "a",
+    choices: ["A", "B", "C", "D"],
+    correctAnswer: "d",
   },
   {
     question: "Question 5",
-    choices: {
-      a: "A",
-      b: "B",
-      c: "C",
-      d: "D",
-    },
-    correctAnswer: "c",
+    choices: ["A", "B", "C", "D"],
+    correctAnswer: "d",
   },
 ];
 
 // FUNCTIONS
 
 // Start section
-  // start button
-    // attach event listener
-      // timer starts - save this until the end
-      // hide start section
-      // show quiz section
-      // display a question
+// start button
+// attach event listener
+// timer starts - save this until the end
+// hide start section
+// show quiz section
+// display a question
 
 // quiz section
-  // array of objects
-    // question
-    // array of answers
-    // correct answer
-      // could list the index of the correct answer or put the string of the correct answer
-  // Build a displayQuestion()
-  // Attach click event to each option
-    // when clicked, check if answer is right or wrong
-      // if right, 
-        // display next question
-      // if wrong, 
-        // decrement the timer by 15 
-        // if timer <= 0 || if quiz[next] === undefined
-          // display results
-        // else
-          // next question
+// array of objects
+// question
+// array of answers
+// correct answer
+// could list the index of the correct answer or put the string of the correct answer
+// Build a displayQuestion()
+// Attach click event to each option
+// when clicked, check if answer is right or wrong
+// if right,
+// display next question
+// if wrong,
+// decrement the timer by 15
+// if timer <= 0 || if quiz[next] === undefined
+// display results
+// else
+// next question
 
 // Results section
-  // form or input field with a button
-  // user inputs initials
-    // store initials and score in local storage
-      // setItem, getItem, stringify
-      // display most recent to screen
-      // append to array, don't overwrite
-
+// form or input field with a button
+// user inputs initials
+// store initials and score in local storage
+// setItem, getItem, stringify
+// display most recent to screen
+// append to array, don't overwrite
 
 // High scores
-  // display all scores in local storage in descending order
-        
-
-
-
-
-
-
-
-
-
-
+// display all scores in local storage in descending order
 
 // Create countdown function
 function countdown() {
@@ -161,17 +124,16 @@ function countdown() {
 }
 
 h2El.textContent = quiz[0].question;
-button1.textContent = quiz[0].answers.a;
-button2.textContent = quiz[0].answers.b;
-button3.textContent = quiz[0].answers.c;
-button4.textContent = quiz[0].answers.d;
+button1.textContent = quiz[0].choices[0];
+button2.textContent = quiz[0].choices[1];
+button3.textContent = quiz[0].choices[2];
+button4.textContent = quiz[0].choices[3];
 
 // FIGURE THIS OUT - On button click, if start button, pull up quiz[0], else if quiz[i] === undefined, pull up all done page, else, pull up next question
 // Look at the class activities 15 to help with the event listener setup. This might need to be an event listener function from the start.
 // Turn this into a carosel where each question exists in html and JS shows or hides the questions on click
 function myQuiz() {
-  
-//   // For each iteration, add next question and possible answers
+  //   // For each iteration, add next question and possible answers
 
   for (var i = 0; i < quiz.length; i++) {
     if (quiz[i] !== undefined) {
@@ -205,7 +167,6 @@ function myQuiz() {
 // Display Correct beneath hr
 
 // Increment multipleChoice array for next question and possible answers
-
 
 // Local storage to store high scores and use an array of objects - each object will contain initials and a score
 
