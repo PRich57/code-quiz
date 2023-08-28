@@ -38,10 +38,11 @@ li3.appendChild(button3);
 li4.appendChild(button4);
 
 // Create object array with each object containing questions, answers, and correctAnswer properties
+// Consider making choices an array instead of an object
 var quiz = [
   {
     question: "Question 1",
-    answers: {
+    choices: {
       a: "A",
       b: "B",
       c: "C",
@@ -51,7 +52,7 @@ var quiz = [
   },
   {
     question: "Question 2",
-    answers: {
+    choices: {
       a: "A",
       b: "B",
       c: "C",
@@ -61,7 +62,7 @@ var quiz = [
   },
   {
     question: "Question 3",
-    answers: {
+    choices: {
       a: "A",
       b: "B",
       c: "C",
@@ -71,7 +72,7 @@ var quiz = [
   },
   {
     question: "Question 4",
-    answers: {
+    choices: {
       a: "A",
       b: "B",
       c: "C",
@@ -81,7 +82,7 @@ var quiz = [
   },
   {
     question: "Question 5",
-    answers: {
+    choices: {
       a: "A",
       b: "B",
       c: "C",
@@ -92,6 +93,56 @@ var quiz = [
 ];
 
 // FUNCTIONS
+
+// Start section
+  // start button
+    // attach event listener
+      // timer starts - save this until the end
+      // hide start section
+      // show quiz section
+      // display a question
+
+// quiz section
+  // array of objects
+    // question
+    // array of answers
+    // correct answer
+      // could list the index of the correct answer or put the string of the correct answer
+  // Build a displayQuestion()
+  // Attach click event to each option
+    // when clicked, check if answer is right or wrong
+      // if right, 
+        // display next question
+      // if wrong, 
+        // decrement the timer by 15 
+        // if timer <= 0 || if quiz[next] === undefined
+          // display results
+        // else
+          // next question
+
+// Results section
+  // form or input field with a button
+  // user inputs initials
+    // store initials and score in local storage
+      // setItem, getItem, stringify
+      // display most recent to screen
+      // append to array, don't overwrite
+
+
+// High scores
+  // display all scores in local storage in descending order
+        
+
+
+
+
+
+
+
+
+
+
+
 // Create countdown function
 function countdown() {
   timeLeft = 75;
@@ -109,20 +160,15 @@ function countdown() {
   }, 1000);
 }
 
-
 h2El.textContent = quiz[0].question;
 button1.textContent = quiz[0].answers.a;
 button2.textContent = quiz[0].answers.b;
 button3.textContent = quiz[0].answers.c;
 button4.textContent = quiz[0].answers.d;
-console.log(h2El);
-console.log(li1);
-console.log(li2);
-console.log(li3);
-console.log(li4);
-
 
 // FIGURE THIS OUT - On button click, if start button, pull up quiz[0], else if quiz[i] === undefined, pull up all done page, else, pull up next question
+// Look at the class activities 15 to help with the event listener setup. This might need to be an event listener function from the start.
+// Turn this into a carosel where each question exists in html and JS shows or hides the questions on click
 function myQuiz() {
   
 //   // For each iteration, add next question and possible answers
@@ -134,10 +180,10 @@ function myQuiz() {
       main.textContent = " ";
       // Add value of each corresponding key in the quiz object array
       h2El.textContent = quiz[i].question;
-      li1.textContent = quiz[i].answers.a;
-      li2.textContent = quiz[i].answers.b;
-      li3.textContent = quiz[i].answers.c;
-      li4.textContent = quiz[i].answers.d;
+      button1.textContent = quiz[i].answers.a;
+      button2.textContent = quiz[i].answers.b;
+      button3.textContent = quiz[i].answers.c;
+      button4.textContent = quiz[i].answers.d;
     }
   }
 }
@@ -159,5 +205,8 @@ function myQuiz() {
 // Display Correct beneath hr
 
 // Increment multipleChoice array for next question and possible answers
+
+
+// Local storage to store high scores and use an array of objects - each object will contain initials and a score
 
 // EVENT LISTENERS

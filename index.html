@@ -8,22 +8,31 @@
   </head>
   <body>
     <header id="header">
-      <a href="#">View High Scores</a>
+      <a href="./highscores.html">View High Scores</a>
     </header>
     <main id="main">
       <!-- Add start page and give each element the start class for easy removal -->
-      <h1 class="start">Welcome to the Code Quiz!</h1>
-      <p class="start">
-        RULES: When the Start button is clicked the timer in the top right
-        corner will begin counting down from 75 seconds and the first question
-        will appear. The next question will appear automatically after the
-        current question has been answered. Make it through the quiz as quickly
-        as possible as the time remaining at the end will be your score. Beware
-        answering incorrectly! Each incorrect answer takes 5 seconds off the
-        clock!
-      </p>
-      <!-- Create Start button -->
-      <button class="start" id="start">START QUIZ</button>
+      <section id="start" class="show">
+
+        <h1>Welcome to the Code Quiz!</h1>
+        <p>
+          RULES: When the Start button is clicked the timer in the top right
+          corner will begin counting down from 75 seconds and the first question
+          will appear. The next question will appear automatically after the
+          current question has been answered. Make it through the quiz as quickly
+          as possible as the time remaining at the end will be your score. Beware
+          answering incorrectly! Each incorrect answer takes 5 seconds off the
+          clock!
+        </p>
+        <!-- Create Start button attach event listener -->
+        <button class="start" id="start">START QUIZ</button>
+      </section>
+      <section id="quiz" class="hide">
+
+      </section>
+      <section id="results" class="hide">
+
+      </section>
     </main>
     <!-- Link to JS -->
     <script src="./assets/js/script.js"></script>
