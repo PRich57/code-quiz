@@ -78,11 +78,36 @@ button2.setAttribute("id", "1");
 button3.setAttribute("id", "2");
 button4.setAttribute("id", "3");
 
+// Add text content to timerEl so it displays on start screen
+timerEl.textContent = "Time: " + timeLeft;
+
 // APPEND ELEMENTS
 header.appendChild(timerEl);
 main.appendChild(h2El);
 
 // FUNCTIONS
+// Create function used to display first question
+function displayFirst() {
+    // Show quiz section
+    h2El.textContent = quiz[0].question;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].textContent = quiz[0].choices[i];
+    }
+    
+    // Append content
+    main.appendChild(listEl);
+    listEl.appendChild(li1);
+    listEl.appendChild(li2);
+    listEl.appendChild(li3);
+    listEl.appendChild(li4);
+    li1.appendChild(button1);
+    li2.appendChild(button2);
+    li3.appendChild(button3);
+    li4.appendChild(button4);
+}
+
+
+
 // Need to make sure the timer subtracts 15 for the last question if incorrect
 // Create function to display next question and call checkAnswer function  
 function displayQuestion() {
@@ -192,41 +217,23 @@ function pauseNext () {
 
 // Create function to display results
 function results(){
-
+  
 }
 
 // EVENT LISTENERS
-//
+// Listen for click on start button
 start.addEventListener("click", function (event) {
   // Stop from bubbling up
   event.stopPropagation();
-
   // Clear content
   sContainer.textContent = " ";
-
   // Call countdown function
   countdown();
-
-  // Show quiz section
-  h2El.textContent = quiz[0].question;
-  button1.textContent = quiz[0].choices[0];
-  button2.textContent = quiz[0].choices[1];
-  button3.textContent = quiz[0].choices[2];
-  button4.textContent = quiz[0].choices[3];
-  
-  // Append content
-  main.appendChild(listEl);
-  listEl.appendChild(li1);
-  listEl.appendChild(li2);
-  listEl.appendChild(li3);
-  listEl.appendChild(li4);
-  li1.appendChild(button1);
-  li2.appendChild(button2);
-  li3.appendChild(button3);
-  li4.appendChild(button4);
+  // Call displayFirst
+  displayFirst();
 });
 
-// 
+// Listen for click on any multiple choice option
 listEl.addEventListener("click", function(event) {
   event.stopPropagation();
   var choice = event.target;
@@ -235,5 +242,4 @@ listEl.addEventListener("click", function(event) {
   });
 
 // Create results function first and get it to populate after last question or when timer <= 0 
-// Need to fix timer so it doesn't go below 0 
 // fix last question not causing -15 if answered incorrectly
