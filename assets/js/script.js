@@ -24,18 +24,11 @@ var button1 = document.createElement("button");
 var button2 = document.createElement("button");
 var button3 = document.createElement("button");
 var button4 = document.createElement("button");
-// Set button attributes to check against correct answer
-button1.setAttribute("id", "0");
-button2.setAttribute("id", "1");
-button3.setAttribute("id", "2");
-button4.setAttribute("id", "3");
-// Create array of buttons
-var buttons = [button1, button2, button3, button4];
 // Create variable as reference to start button
 var start = document.querySelector("#start-button");
-// Set index to 0
+// Declare global variable to store index and set to 0
 var index = 0;
-// Declare variable to store userInput
+// Declare global variable to store userInput
 var userInput;
 // Declare check variable to hold a boolean value
 var check = true;
@@ -45,6 +38,13 @@ var hr = document.createElement("hr");
 var correct = document.createElement("h3");
 // Declare variable for incorrect
 var incorrect = document.createElement("h3")
+
+// SET ATTRIBUTES
+// Set button attributes to check against correct answer
+button1.setAttribute("id", "0");
+button2.setAttribute("id", "1");
+button3.setAttribute("id", "2");
+button4.setAttribute("id", "3");
 
 // APPEND ELEMENTS
 header.appendChild(timerEl);
@@ -125,13 +125,11 @@ start.addEventListener("click", function (event) {
   });
 });
 
-// Run display question on click
-
-
+// Need to make sure the timer subtracts 15 for the last question if incorrect
 // Create function to display next question and call checkAnswer function  
 function displayQuestion() {
   
-  if (index > quiz.length - 1) {
+  if (index > quiz.length) {
     // results();
     
     return;
@@ -149,12 +147,7 @@ function displayQuestion() {
       button2.disabled = true;
       button3.disabled = true;
       button4.disabled = true;
-      setTimeout(pauseNext, 2000);
-      // h2El.textContent = quiz[index].question;
-      // button1.textContent = quiz[index].choices[0];
-      // button2.textContent = quiz[index].choices[1];
-      // button3.textContent = quiz[index].choices[2];
-      // button4.textContent = quiz[index].choices[3];
+      setTimeout(pauseNext, 1500);
     } else {
       main.appendChild(hr);
       incorrect.textContent = "Incorrect";
@@ -163,12 +156,7 @@ function displayQuestion() {
       button2.disabled = true;
       button3.disabled = true;
       button4.disabled = true;
-      setTimeout(pauseNext, 2000);
-      // h2El.textContent = quiz[index].question;
-      // button1.textContent = quiz[index].choices[0];
-      // button2.textContent = quiz[index].choices[1];
-      // button3.textContent = quiz[index].choices[2];
-      // button4.textContent = quiz[index].choices[3];
+      setTimeout(pauseNext, 1500);
     }
     index++;
   }
@@ -179,11 +167,12 @@ function checkAnswer(userChoice, correctAnswer) {
   if (userChoice === correctAnswer){
     return true;
   } else {
+    timeLeft -= 15;
     return false;
   }
 }
 
-// Create a pause function to pause for 2 seconds after each answer selection to display correct or incorrect
+// Create a pause function to be used within the setTimeout function to delay next question from appearing immediately
 function pauseNext () {  
   if (quiz[index] !== undefined) {
     h2El.textContent = quiz[index].question;
@@ -205,6 +194,12 @@ function pauseNext () {
 function results(){
 
 }
+
+// Create results function first and get it to populate after last question or when timer <= 0 
+// Need to fix timer so it doesn't go below 0 
+// fix last question not causing -15 if answered incorrectly
+
+
 
 // quiz section
 // array of objects
@@ -236,7 +231,7 @@ function results(){
 // display all scores in local storage in descending order
 
 // Create countdown function
-function countdown() {
+function countdown(isWrong) {
   timeLeft = 75;
 
   var timeInterval = setInterval(function () {
@@ -245,10 +240,11 @@ function countdown() {
       timerEl.textContent = "Time: " + timeLeft;
       
       // Exit condition
-      if (timeLeft === 0) {
+      if (timeLeft <= 0) {
+        timeLeft = 0;
         // displayScore(); - need to create this function
         clearInterval(timeInterval);
-        return timeLeft;
+        return;
       }
     }
   }, 1000);
