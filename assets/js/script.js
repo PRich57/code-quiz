@@ -39,6 +39,12 @@ var index = 0;
 var userInput;
 // Declare check variable to hold a boolean value
 var check = true;
+// Declare variable for hr
+var hr = document.createElement("hr");
+// Declare variable for correct
+var correct = document.createElement("h3");
+// Declare variable for incorrect
+var incorrect = document.createElement("h3")
 
 // APPEND ELEMENTS
 header.appendChild(timerEl);
@@ -49,27 +55,27 @@ var quiz = [
   {
     question: "Question 1",
     choices: ["A", "B", "C", "D"],
-    correctAnswer: 2,
+    correctAnswer: "2",
   },
   {
     question: "Question 2",
     choices: ["A", "B", "C", "D"],
-    correctAnswer: 0,
+    correctAnswer: "0",
   },
   {
     question: "Question 3",
     choices: ["A", "B", "C", "D"],
-    correctAnswer: 1,
+    correctAnswer: "1",
   },
   {
     question: "Question 4",
     choices: ["A", "B", "C", "D"],
-    correctAnswer: 3,
+    correctAnswer: "3",
   },
   {
     question: "Question 5",
     choices: ["A", "B", "C", "D"],
-    correctAnswer: 3,
+    correctAnswer: "3",
   },
 ];
 
@@ -89,6 +95,9 @@ start.addEventListener("click", function (event) {
 
   // Clear content
   sContainer.textContent = " ";
+
+  // Call countdown function
+  countdown();
 
   // Show quiz section
   h2El.textContent = quiz[0].question;
@@ -122,39 +131,48 @@ start.addEventListener("click", function (event) {
 // Create function to display next question and call checkAnswer function  
 function displayQuestion() {
   
-  if (index > quiz.length) {
-    // displayScore();
+  if (index > quiz.length - 1) {
+    // results();
+    
+    return;
   } else {
     var check = checkAnswer(userInput, quiz[index].correctAnswer);
     console.log(quiz[index].correctAnswer);
     console.log(userInput);
+    console.log(check);
     if (check){
-      var hr = document.createElement("hr");
       main.appendChild(hr);
-      var correct = document.createElement("h3");
-      correct.textContent = "Correct";
+      correct.textContent = "Correct!";
       main.appendChild(correct);
-      
-      h2El.textContent = quiz[index].question;
-      button1.textContent = quiz[index].choices[0];
-      button2.textContent = quiz[index].choices[1];
-      button3.textContent = quiz[index].choices[2];
-      button4.textContent = quiz[index].choices[3];
+      // Disable buttons here to prevent chance of overlapping correct or incorrect responses
+      button1.disabled = true;
+      button2.disabled = true;
+      button3.disabled = true;
+      button4.disabled = true;
+      setTimeout(pauseNext, 2000);
+      // h2El.textContent = quiz[index].question;
+      // button1.textContent = quiz[index].choices[0];
+      // button2.textContent = quiz[index].choices[1];
+      // button3.textContent = quiz[index].choices[2];
+      // button4.textContent = quiz[index].choices[3];
     } else {
-      
-      h2El.textContent = quiz[index].question;
-      button1.textContent = quiz[index].choices[0];
-      button2.textContent = quiz[index].choices[1];
-      button3.textContent = quiz[index].choices[2];
-      button4.textContent = quiz[index].choices[3];
+      main.appendChild(hr);
+      incorrect.textContent = "Incorrect";
+      main.appendChild(incorrect);
+      button1.disabled = true;
+      button2.disabled = true;
+      button3.disabled = true;
+      button4.disabled = true;
+      setTimeout(pauseNext, 2000);
+      // h2El.textContent = quiz[index].question;
+      // button1.textContent = quiz[index].choices[0];
+      // button2.textContent = quiz[index].choices[1];
+      // button3.textContent = quiz[index].choices[2];
+      // button4.textContent = quiz[index].choices[3];
     }
+    index++;
   }
-  index++;
 }
-
-
-
-// Create a pause function to pause for 2 seconds after each answer selection to display correct or incorrect
 
 // Create function to check if answer is correct
 function checkAnswer(userChoice, correctAnswer) {
@@ -163,6 +181,29 @@ function checkAnswer(userChoice, correctAnswer) {
   } else {
     return false;
   }
+}
+
+// Create a pause function to pause for 2 seconds after each answer selection to display correct or incorrect
+function pauseNext () {  
+  if (quiz[index] !== undefined) {
+    h2El.textContent = quiz[index].question;
+    button1.textContent = quiz[index].choices[0];
+    button2.textContent = quiz[index].choices[1];
+    button3.textContent = quiz[index].choices[2];
+    button4.textContent = quiz[index].choices[3];
+    main.removeChild(hr);
+    correct.textContent = " ";
+    incorrect.textContent = " ";
+    button1.disabled = false;
+    button2.disabled = false;
+    button3.disabled = false;
+    button4.disabled = false;
+  }
+}
+
+// Create results function
+function results(){
+
 }
 
 // quiz section
@@ -199,14 +240,16 @@ function countdown() {
   timeLeft = 75;
 
   var timeInterval = setInterval(function () {
-    timeLeft--;
-    timerEl.textContent = "Time: " + timeLeft;
-
-    // Exit condition
-    if (timeLeft === 0) {
-      // displayScore(); - need to create this function
-      clearInterval(timeInterval);
-      return;
+    if (quiz[index] !== undefined){
+      timeLeft--;
+      timerEl.textContent = "Time: " + timeLeft;
+      
+      // Exit condition
+      if (timeLeft === 0) {
+        // displayScore(); - need to create this function
+        clearInterval(timeInterval);
+        return timeLeft;
+      }
     }
   }, 1000);
 }
@@ -214,23 +257,23 @@ function countdown() {
 // FIGURE THIS OUT - On button click, if start button, pull up quiz[0], else if quiz[i] === undefined, pull up all done page, else, pull up next question
 // Look at the class activities 15 to help with the event listener setup. This might need to be an event listener function from the start.
 // Turn this into a carousel where JS shows or hides the questions on click
-function displayQuiz() {
-  // For each iteration, add next question and possible answers
+// function displayQuiz() {
+//   // For each iteration, add next question and possible answers
 
-  for (var i = 0; i < quiz.length; i++) {
-    if (quiz[i] !== undefined) {
-      //  addEventListener here for click on button class choice
-      // Clear out main content
-      main.textContent = " ";
-      // Add value of each corresponding key in the quiz object array
-      h2El.textContent = quiz[i].question;
-      button1.textContent = quiz[i].answers.a;
-      button2.textContent = quiz[i].answers.b;
-      button3.textContent = quiz[i].answers.c;
-      button4.textContent = quiz[i].answers.d;
-    }
-  }
-}
+//   for (var i = 0; i < quiz.length; i++) {
+//     if (quiz[i] !== undefined) {
+//       //  addEventListener here for click on button class choice
+//       // Clear out main content
+//       main.textContent = " ";
+//       // Add value of each corresponding key in the quiz object array
+//       h2El.textContent = quiz[i].question;
+//       button1.textContent = quiz[i].answers.a;
+//       button2.textContent = quiz[i].answers.b;
+//       button3.textContent = quiz[i].answers.c;
+//       button4.textContent = quiz[i].answers.d;
+//     }
+//   }
+// }
 // myQuiz();
 
 // While time != 0 && value at array variable != undefined
