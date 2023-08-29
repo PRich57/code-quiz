@@ -24,10 +24,21 @@ var button1 = document.createElement("button");
 var button2 = document.createElement("button");
 var button3 = document.createElement("button");
 var button4 = document.createElement("button");
+// Set button attributes to check against correct answer
+button1.setAttribute("id", "0");
+button2.setAttribute("id", "1");
+button3.setAttribute("id", "2");
+button4.setAttribute("id", "3");
+// Create array of buttons
+var buttons = [button1, button2, button3, button4];
 // Create variable as reference to start button
 var start = document.querySelector("#start-button");
 // Set index to 0
 var index = 0;
+// Declare variable to store userInput
+var userInput;
+// Declare check variable to hold a boolean value
+var check = true;
 
 // APPEND ELEMENTS
 header.appendChild(timerEl);
@@ -38,27 +49,27 @@ var quiz = [
   {
     question: "Question 1",
     choices: ["A", "B", "C", "D"],
-    correctAnswer: "d",
+    correctAnswer: 2,
   },
   {
     question: "Question 2",
     choices: ["A", "B", "C", "D"],
-    correctAnswer: "d",
+    correctAnswer: 0,
   },
   {
     question: "Question 3",
     choices: ["A", "B", "C", "D"],
-    correctAnswer: "d",
+    correctAnswer: 1,
   },
   {
     question: "Question 4",
     choices: ["A", "B", "C", "D"],
-    correctAnswer: "d",
+    correctAnswer: 3,
   },
   {
     question: "Question 5",
     choices: ["A", "B", "C", "D"],
-    correctAnswer: "d",
+    correctAnswer: 3,
   },
 ];
 
@@ -79,65 +90,78 @@ start.addEventListener("click", function (event) {
   // Clear content
   sContainer.textContent = " ";
 
-  // Declare element variable to target the section to show
-  var element = document.querySelector("#quiz");
-
   // Show quiz section
-  if (element.matches("section")) {
-    // get current state
-    var state = element.getAttribute("data-state");
-
-    if (state === "hidden") {
-      // Update data-state to hidden
-      element.dataset.state = "visible";
-
-      // element.textContent = quiz[0];
-      h2El.textContent = quiz[0].question;
-      button1.textContent = quiz[0].choices[0];
-      button2.textContent = quiz[0].choices[1];
-      button3.textContent = quiz[0].choices[2];
-      button4.textContent = quiz[0].choices[3];
-
-      // Append content
-      main.appendChild(listEl);
-      listEl.appendChild(li1);
-      listEl.appendChild(li2);
-      listEl.appendChild(li3);
-      listEl.appendChild(li4);
-      li1.appendChild(button1);
-      li2.appendChild(button2);
-      li3.appendChild(button3);
-      li4.appendChild(button4);
-    }
-  }
-});
-
-listEl.addEventListener("click", function(event) {
+  h2El.textContent = quiz[0].question;
+  button1.textContent = quiz[0].choices[0];
+  button2.textContent = quiz[0].choices[1];
+  button3.textContent = quiz[0].choices[2];
+  button4.textContent = quiz[0].choices[3];
+  
+  // Append content
+  main.appendChild(listEl);
+  listEl.appendChild(li1);
+  listEl.appendChild(li2);
+  listEl.appendChild(li3);
+  listEl.appendChild(li4);
+  li1.appendChild(button1);
+  li2.appendChild(button2);
+  li3.appendChild(button3);
+  li4.appendChild(button4);
+  
+  listEl.addEventListener("click", function(event) {
   event.stopPropagation();
+  var choice = event.target;
+  userInput = choice.getAttribute("id");
   displayQuestion();
+  });
 });
 
-function displayQuestion() {
-  index++;
+// Run display question on click
 
-  if (index > quiz.length - 1) {
-    displayScore();
+
+// Create function to display next question and call checkAnswer function  
+function displayQuestion() {
+  
+  if (index > quiz.length) {
+    // displayScore();
   } else {
-    var check = checkAnswer();
+    var check = checkAnswer(userInput, quiz[index].correctAnswer);
+    console.log(quiz[index].correctAnswer);
+    console.log(userInput);
     if (check){
-      h2El.textContent = quiz[index].question;
-      button1.textContent = quiz[index].choices[0];
-      button2.textContent = quiz[index].choices[1];
-      button3.textContent = quiz[index].choices[2];
-      button4.textContent = quiz[index].choices[3];
       var hr = document.createElement("hr");
       main.appendChild(hr);
       var correct = document.createElement("h3");
       correct.textContent = "Correct";
       main.appendChild(correct);
+      
+      h2El.textContent = quiz[index].question;
+      button1.textContent = quiz[index].choices[0];
+      button2.textContent = quiz[index].choices[1];
+      button3.textContent = quiz[index].choices[2];
+      button4.textContent = quiz[index].choices[3];
     } else {
       
+      h2El.textContent = quiz[index].question;
+      button1.textContent = quiz[index].choices[0];
+      button2.textContent = quiz[index].choices[1];
+      button3.textContent = quiz[index].choices[2];
+      button4.textContent = quiz[index].choices[3];
     }
+  }
+  index++;
+}
+
+
+
+// Create a pause function to pause for 2 seconds after each answer selection to display correct or incorrect
+
+// Create function to check if answer is correct
+function checkAnswer(userChoice, correctAnswer) {
+  if (userChoice === correctAnswer){
+    return true;
+  } else {
+    return false;
   }
 }
 
