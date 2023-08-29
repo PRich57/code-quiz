@@ -129,7 +129,7 @@ start.addEventListener("click", function (event) {
 // Create function to display next question and call checkAnswer function  
 function displayQuestion() {
   
-  if (index > quiz.length) {
+  if (index > quiz.length - 1) {
     // results();
     
     return;
