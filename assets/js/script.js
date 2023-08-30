@@ -16,6 +16,8 @@ var timeLeft = 75;
 var userInput;
 // Declare check variable to hold a boolean value
 var check = true;
+// Declare object variable to store score in local memory
+var scoreObj;
 // Create object array containing the quiz
 var quiz = [
   {
@@ -69,7 +71,11 @@ var hr = document.createElement("hr");
 // Declare variable to display and remove "correct"
 var correct = document.createElement("h3");
 // Declare variable to display and remove "incorrect" 
-var incorrect = document.createElement("h3")
+var incorrect = document.createElement("h3");
+// Create input element for results function
+var resultsInput = document.createElement("input");
+// Create submit button for results page
+var resultsButton = document.createElement("button");
 
 // SET ATTRIBUTES
 // Set button attributes to check against correct answer
@@ -166,7 +172,7 @@ function countdown() {
     if (quiz[index] !== undefined){
       if (timeLeft <= 0) {
         timeLeft = 0;
-        // displayScore(); - need to create this function
+        results();
         timerEl.textContent = "Time: " + timeLeft;
         clearInterval(timeInterval);
         return;
@@ -211,13 +217,21 @@ function pauseNext () {
   } else {
     // Call results function
     console.log("is this where it stops");
-    //results();
+    results();
   }
 }
 
 // Create function to display results
 function results(){
-  
+  main.textContent = "";
+  main.appendChild(resultsInput);
+  resultsButton.textContent = "Submit";
+  main.appendChild(resultsButton);
+}
+
+// Create function to render message
+function renderMessage(){
+
 }
 
 // EVENT LISTENERS
@@ -241,5 +255,23 @@ listEl.addEventListener("click", function(event) {
   displayQuestion();
   });
 
+var response = document.getElementById("response");
+
+
+resultsButton.addEventListener("click", function(event) {
+  event.preventDefault();
+  if (resultsInput.value === "") {
+    console.log(resultsInput.value);
+    response.textContent = "You must enter your initials";
+    main.appendChild(response);
+  } else {
+    scoreObj = {
+      score: timeLeft,
+      initials: resultsInput.value,
+    };
+    localStorage.setItem("score", JSON.stringify(scoreObj));
+    response.textContent = "Thank you";
+  }
+});
 // Create results function first and get it to populate after last question or when timer <= 0 
 // fix last question not causing -15 if answered incorrectly
