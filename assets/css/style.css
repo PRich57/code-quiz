@@ -51,16 +51,19 @@ p {
 }
 
 #start-button {
-  margin: 1rem;
+  margin: 2rem;
 }
 
 button {
+  font-size: 2rem;
   border-radius: 1rem;
   padding: 1rem;
+  background-color: rgb(89, 4, 186);
+  color: rgb(255, 255, 255);
 }
 
 button:hover {
-  box-shadow: inset 1px 1px 7px 2px rgb(90, 188, 221);
+  box-shadow: inset 1px 1px 7px 2px rgb(163, 69, 231);
 }
 
 #quiz {
@@ -69,6 +72,10 @@ button:hover {
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+}
+
+h2 {
+  font-size: 3rem;
 }
 
 /* Make gradient underline */
@@ -86,5 +93,27 @@ hr {
   );
 }
 
+h3 {
+  font-size: 3rem;
+}
 
+ol {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding-left: 6rem;
+  margin-bottom: 3rem;
+}
+
+ol li {
+  font-size: 2rem;
+  padding-left: 2rem;
+}
+
+input {
+  margin: 2rem;
+  font-size: 2rem;
+}
 

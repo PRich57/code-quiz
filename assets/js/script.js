@@ -234,18 +234,17 @@ function results() {
   timerEl.textContent = "Time: " + timeLeft;
 }
 
+// Create function to store highScores array
+function storeScore() {
+  localStorage.setItem("high-scores", JSON.stringify(highScores));
+}
+
 // Create init function to prevent overwrite
 function init() {
   var storedScores = JSON.parse(localStorage.getItem("high-scores"));
   if (storedScores !== null) {
     highScores = storedScores;
   }
-  // renderScores();
-}
-
-// Create function to store highScores array
-function storeScore() {
-  localStorage.setItem("high-scores", JSON.stringify(highScores));
 }
 
 // EVENT LISTENERS
