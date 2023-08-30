@@ -8,6 +8,8 @@ var main = document.getElementById("main");
 var sContainer = document.querySelector("#start");
 // Declare variable that references start button
 var start = document.querySelector("#start-button");
+// Declare variable for initials response on results page
+var response = document.getElementById("response");
 // Declare variable for index and set to 0
 var index = 0;
 // Declare timeLeft variable
@@ -112,9 +114,6 @@ function displayFirst() {
     li4.appendChild(button4);
 }
 
-
-
-// Need to make sure the timer subtracts 15 for the last question if incorrect
 // Create function to display next question and call checkAnswer function  
 function displayQuestion() {
   // Exit condition
@@ -169,6 +168,7 @@ function countdown() {
   timeLeft = 75;
 
   var timeInterval = setInterval(function () {
+    // Exit conditions
     if (quiz[index] !== undefined){
       if (timeLeft <= 0) {
         timeLeft = 0;
@@ -180,7 +180,6 @@ function countdown() {
       timeLeft--;
       timerEl.textContent = "Time: " + timeLeft;
       
-      // Exit condition
     }
   }, 1000);
 }
@@ -216,23 +215,55 @@ function pauseNext () {
     enableButtons();
   } else {
     // Call results function
-    console.log("is this where it stops");
     results();
   }
 }
 
 // Create function to display results
-function results(){
+function results() {
   main.textContent = "";
   main.appendChild(resultsInput);
   resultsButton.textContent = "Submit";
   main.appendChild(resultsButton);
+  timerEl.textContent = "Time: " + timeLeft;
 }
 
-// Create function to render message
-function renderMessage(){
+// var highScorePage = document.querySelector("#highScores");
+// console.log(highScorePage);
+// var highScoreCountSpan = document.querySelector("#scoreCount")
 
+// Create function to render high scores
+// function renderScores() {
+//   highScorePage.innerHTML = "";
+//   highScoreCountSpan.textContent = highScores.length;
+
+//   for (var i = 0; i < highScores.length; i++) {
+//     var highscore = highscores[i];
+
+//     var li = document.createElement("li");
+//     li.textContent = highscore;
+//     li.setAttribute("data-index", i);
+
+//     highScorePage.appendChild(li);
+//   }
+
+// }
+
+// Create init function to prevent overwrite
+function init() {
+  var storedScores = JSON.parse(localStorage.getItem("high-scores"));
+  if (storedScores !== null) {
+    highScores = storedScores;
+  }
+  // renderScores();
 }
+
+// Create function to store highScores array
+function storeScore() {
+  localStorage.setItem("high-scores", JSON.stringify(highScores));
+}
+
+
 
 // EVENT LISTENERS
 // Listen for click on start button
@@ -255,23 +286,41 @@ listEl.addEventListener("click", function(event) {
   displayQuestion();
   });
 
-var response = document.getElementById("response");
-
-
-resultsButton.addEventListener("click", function(event) {
-  event.preventDefault();
-  if (resultsInput.value === "") {
-    console.log(resultsInput.value);
-    response.textContent = "You must enter your initials";
-    main.appendChild(response);
-  } else {
-    scoreObj = {
-      score: timeLeft,
-      initials: resultsInput.value,
-    };
-    localStorage.setItem("score", JSON.stringify(scoreObj));
-    response.textContent = "Thank you";
-  }
+  var highScores = [];
+  
+  // Listen for click on submit button
+  resultsButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    var userInitials = resultsInput.value.trim();
+    if (userInitials === "") {
+      response.textContent = "You must enter your initials!";
+      main.appendChild(response);
+    } else {
+      scoreObj = {
+        score: timeLeft,
+        initials: userInitials,
+      };
+    response.textContent = "Thank you! Your score has been saved!";
+    highScores.push(scoreObj);
+    resultsInput.value = "";
+    }
+    storeScore();
+    // renderScores();
 });
+
+init();
+
+
+
+
+
+
+
+
+
+// localStorage.setItem("score", JSON.stringify(scoreObj));
+// highScores = JSON.parse(localStorage.getItem("score"));
+// highScores.push(lastScore);
+// localStorage.setItem("high-scores", JSON.stringify(highScores));
 // Create results function first and get it to populate after last question or when timer <= 0 
 // fix last question not causing -15 if answered incorrectly
