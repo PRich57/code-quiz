@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  color: rgb(15, 16, 18);
+}
+
+html {
+  font-size: 62.5%;
+  /* width: fit-content; */
+}
+
+body {
+  background-color: rgb(207, 207, 207);
+  font-family: "Nunito", sans-serif;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 4rem;
+  font-size: 2.5rem;
+}
+
+main {
+  text-align: center;
+}
+
+a:hover, button:hover {
+  font-weight: 600;
+}
+
+#start {
+  display: flex;
+  /* text-align: center; */
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 3rem;
+}
+
+h1 {
+  font-size: 6.5rem;
+  padding: 3.5rem;
+  /* text-align: center; */
+}
+
+p {
+  font-size: 2rem;
+}
+
+#start-button {
+  margin: 1rem;
+}
+
+button {
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+button:hover {
+  box-shadow: inset 1px 1px 7px 2px rgb(90, 188, 221);
+}
+
+#quiz {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Make gradient underline */
+hr {
+  margin: 5px 0;
+  height: 2px;
+  border: none;
+  background: -webkit-gradient(
+    linear,
+    0 0,
+    100% 0,
+    from(transparent),
+    to(transparent),
+    color-stop(50%, black)
+  );
+}
+
+
+

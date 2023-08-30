@@ -1,4 +1,5 @@
 // VARIABLE DECLARATIONS
+
 var body = document.body;
 // Declare header variable
 var header = document.getElementById("header");
@@ -20,6 +21,8 @@ var userInput;
 var check = true;
 // Declare object variable to store score in local memory
 var scoreObj;
+// Declare high scores array to push newest score into
+var highScores = [];
 // Create object array containing the quiz
 var quiz = [
   {
@@ -80,6 +83,7 @@ var resultsInput = document.createElement("input");
 var resultsButton = document.createElement("button");
 
 // SET ATTRIBUTES
+
 // Set button attributes to check against correct answer
 button1.setAttribute("id", "0");
 button2.setAttribute("id", "1");
@@ -90,10 +94,12 @@ button4.setAttribute("id", "3");
 timerEl.textContent = "Time: " + timeLeft;
 
 // APPEND ELEMENTS
+
 header.appendChild(timerEl);
 main.appendChild(h2El);
 
 // FUNCTIONS
+
 // Create function used to display first question
 function displayFirst() {
     // Show quiz section
@@ -228,27 +234,6 @@ function results() {
   timerEl.textContent = "Time: " + timeLeft;
 }
 
-// var highScorePage = document.querySelector("#highScores");
-// console.log(highScorePage);
-// var highScoreCountSpan = document.querySelector("#scoreCount")
-
-// Create function to render high scores
-// function renderScores() {
-//   highScorePage.innerHTML = "";
-//   highScoreCountSpan.textContent = highScores.length;
-
-//   for (var i = 0; i < highScores.length; i++) {
-//     var highscore = highscores[i];
-
-//     var li = document.createElement("li");
-//     li.textContent = highscore;
-//     li.setAttribute("data-index", i);
-
-//     highScorePage.appendChild(li);
-//   }
-
-// }
-
 // Create init function to prevent overwrite
 function init() {
   var storedScores = JSON.parse(localStorage.getItem("high-scores"));
@@ -263,9 +248,8 @@ function storeScore() {
   localStorage.setItem("high-scores", JSON.stringify(highScores));
 }
 
-
-
 // EVENT LISTENERS
+
 // Listen for click on start button
 start.addEventListener("click", function (event) {
   // Stop from bubbling up
@@ -285,8 +269,6 @@ listEl.addEventListener("click", function(event) {
   userInput = choice.getAttribute("id");
   displayQuestion();
   });
-
-  var highScores = [];
   
   // Listen for click on submit button
   resultsButton.addEventListener("click", function(event) {
@@ -300,13 +282,15 @@ listEl.addEventListener("click", function(event) {
         score: timeLeft,
         initials: userInitials,
       };
-    response.textContent = "Thank you! Your score has been saved!";
-    highScores.push(scoreObj);
-    resultsInput.value = "";
+      response.textContent = "Thank you! Your score has been saved!";
+      main.appendChild(response);
+      highScores.push(scoreObj);
+      resultsInput.value = "";
     }
     storeScore();
-    // renderScores();
 });
+
+// FUNCTION CALL
 
 init();
 
