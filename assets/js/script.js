@@ -26,27 +26,44 @@ var highScores = [];
 // Create object array containing the quiz
 var quiz = [
   {
-    question: "Question 1 of 10: Inside which HTML element do we put the source to an external JavaScript file?",
+    question:
+      "Question 1 of 10: Inside which HTML element do we put the source to an external JavaScript file?",
     choices: ["<link>", "<head>", "<script>", "<meta>"],
     correctAnswer: "2",
   },
   {
     question: "Question 2 of 10: What does CSS stand for?",
-    choices: ["Colorful Style Sheets", "Cascading Style Sheets", "Creative Style Sheets", "Cambodian Computer Store"],
+    choices: [
+      "Colorful Style Sheets",
+      "Cascading Style Sheets",
+      "Creative Style Sheets",
+      "Cambodian Computer Store",
+    ],
     correctAnswer: "1",
   },
   {
     question: "Question 3 of 10: How do you insert a comment in a CSS file?",
-    choices: ["/* This is a comment */", "// This is a comment", "'This is a comment", "// This is a comment //"],
+    choices: [
+      "/* This is a comment */",
+      "// This is a comment",
+      "'This is a comment",
+      "// This is a comment //",
+    ],
     correctAnswer: "0",
   },
   {
     question: "Question 4 of 10: What does HTML stand for?",
-    choices: ["Hyper Tom Makes Lunch", "Home Tool Markup Language", "Hyperlinks Text Module Linker", "Hyper Text Markup Language"],
+    choices: [
+      "Hyper Tom Makes Lunch",
+      "Home Tool Markup Language",
+      "Hyperlinks Text Module Linker",
+      "Hyper Text Markup Language",
+    ],
     correctAnswer: "3",
   },
   {
-    question: "Question 5 of 10: In HTML, which character is used to indicate an end tag?",
+    question:
+      "Question 5 of 10: In HTML, which character is used to indicate an end tag?",
     choices: ["*", "^", "]", "/"],
     correctAnswer: "3",
   },
@@ -57,22 +74,40 @@ var quiz = [
   },
   {
     question: "Question 7 of 10: How do we make a function in JavaScript?",
-    choices: ["function = myFunction()", "function:myFunction()", "function myFunction()", "myFunction(function)"],
+    choices: [
+      "function = myFunction()",
+      "function:myFunction()",
+      "function myFunction()",
+      "myFunction(function)",
+    ],
     correctAnswer: "2",
   },
   {
-    question: "Question 8 of 10: What is the difference between a function and a method?",
-    choices: ["A method is a CSS term, a function is related to JavaScript", "A function has at least one parameter while a method has none", "A function is a set of instructions or procedures to perform a specific task, and a method is a set of instructions that are associated with an object", "A method is used to create new elements in the DOM while a function is used to perform a specific task with these elements"],
+    question:
+      "Question 8 of 10: What is the difference between a function and a method?",
+    choices: [
+      "A method is a CSS term, a function is related to JavaScript",
+      "A function has at least one parameter while a method has none",
+      "A function is a set of instructions or procedures to perform a specific task, and a method is a set of instructions that are associated with an object",
+      "A method is used to create new elements in the DOM while a function is used to perform a specific task with these elements",
+    ],
     correctAnswer: "2",
   },
   {
-    question: "Question 9 of 10: If an array has a length of 10, what would be the final index in the array?",
+    question:
+      "Question 9 of 10: If an array has a length of 10, what would be the final index in the array?",
     choices: ["8", "11", "10", "9"],
     correctAnswer: "3",
   },
   {
-    question: "Question 10 of 10: Why shouldn't we refer to JavaScript as Java?",
-    choices: ["We should", "They're two entirely different languages", "It'll hurt Ben's feelings", "I don't know what either of those are but now I want coffee"],
+    question:
+      "Question 10 of 10: Why shouldn't we refer to JavaScript as Java?",
+    choices: [
+      "We should",
+      "They're two entirely different languages",
+      "It'll hurt Ben's feelings",
+      "I don't know what either of those are but now I want coffee",
+    ],
     correctAnswer: "1",
   },
 ];
@@ -191,7 +226,10 @@ function displayQuestion() {
 function disableButtons() {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].disabled = true;
-    buttons[i].setAttribute("style", "background-color:gray;box-shadow:inset 0px 0px 0px gray;");
+    buttons[i].setAttribute(
+      "style",
+      "background-color:gray;box-shadow:inset 0px 0px 0px gray;"
+    );
   }
 }
 

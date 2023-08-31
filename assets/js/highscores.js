@@ -9,23 +9,22 @@ footer.appendChild(clearBtn);
 function renderScores() {
   h1El.textContent = "High Scores";
   var highScores = JSON.parse(localStorage.getItem("high-scores"));
-  if (highScores === null){
+  if (highScores === null) {
     return;
   }
   for (var i = 0; i < highScores.length; i++) {
     // Sort by descending order function
     highScores.sort(descendingOrder);
-    
+
     var initials = highScores[i].initials.toUpperCase();
     var highScore = highScores[i].score;
-    
+
     var li = document.createElement("li");
     li.textContent = initials + " - " + highScore;
     li.setAttribute("data-index", i);
     li.setAttribute("class", "highScoresItems");
-    
+
     highScorePage.appendChild(li);
-    
   }
 }
 

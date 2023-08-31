@@ -17,17 +17,14 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
-/* Use this id to create a flex container */
-/* #highScoresHeader {
-  display: flex;
-} */
-
+/* Make flex container to organize content */
 #highScoresMain {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Make flex container to style header */
 header {
   display: flex;
   flex-wrap: wrap;
@@ -36,15 +33,24 @@ header {
   font-size: 2.5rem;
 }
 
+/* Center text in main and add padding */
 main {
   text-align: center;
   margin: 0 5rem;
 }
 
-a:hover, button:hover {
+/* Add hover feature to buttons and anchors */
+a:hover,
+button:hover {
   font-weight: 700;
 }
 
+/* Give buttons an inset shadow on hover */
+button:hover {
+  box-shadow: inset 1px 1px 7px 2px rgb(163, 69, 231);
+}
+
+/* Style the start page with flex */
 #start {
   display: flex;
   flex-direction: column;
@@ -53,21 +59,25 @@ a:hover, button:hover {
   padding: 3rem;
 }
 
+/* Set font-size and padding to h1 */
 h1 {
   font-size: 6.5rem;
   padding: 3.5rem;
 }
 
+/* Set paragraph font-size */
 p {
   font-size: 2rem;
 }
 
+/* Give start button some space */
 #start-button {
   margin: 2rem;
 }
 
+/* Give buttons space, size, color, and border-radius */
 button {
-  margin: .5rem;
+  margin: 0.5rem;
   font-size: 2rem;
   border-radius: 1rem;
   padding: 1rem;
@@ -75,24 +85,14 @@ button {
   color: rgb(255, 255, 255);
 }
 
+/* Create specific size for quiz buttons */
 .qButton {
   min-width: 60rem;
   max-width: 60rem;
   margin-right: 5rem;
 }
 
-button:hover {
-  box-shadow: inset 1px 1px 7px 2px rgb(163, 69, 231);
-}
-
-#quiz {
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
+/* Set h2 size and give space */
 h2 {
   margin: 2rem;
   font-size: 3rem;
@@ -113,14 +113,17 @@ hr {
   );
 }
 
+/* Give h3 specific size */
 h3 {
   font-size: 3rem;
 }
 
+/* Give h4 specific font weight */
 h4 {
   font-weight: 500;
 }
 
+/* Make ol flex container for organization */
 ol {
   display: flex;
   flex-direction: column;
@@ -131,25 +134,30 @@ ol {
   margin-bottom: 3rem;
 }
 
+/* Give high scores ol its own style */
 #highScoresList {
   padding-left: 0rem;
   width: auto;
 }
 
+/* Set list item font-size */
 ol li {
   font-size: 2rem;
 }
 
+/* Set specific padding for high scores list items */
 .highScoresItems {
   padding: 0 1.5rem;
 }
 
+/* Adjust position of input field and set font-size */
 input {
   margin: 2rem;
   margin-left: 10rem;
   font-size: 2.75rem;
 }
 
+/* Make footer flex container for organization */
 footer {
   display: flex;
   justify-content: center;
