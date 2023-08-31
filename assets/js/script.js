@@ -189,7 +189,7 @@ function displayFirst() {
 }
 
 // Create function to display next question and call checkAnswer function
-function displayQuestion() {
+function displayQuestion(choiceId) {
   // Exit condition
   if (index > quiz.length - 1) {
     results();
@@ -206,7 +206,7 @@ function displayQuestion() {
       // Append correct to main
       main.appendChild(correct);
       // Disable buttons here
-      disableButtons();
+      disableButtons(choiceId);
       // Pause for 1.5s before displaying next question
       setTimeout(pauseNext, 1500);
     } else {
@@ -214,7 +214,7 @@ function displayQuestion() {
       main.appendChild(hr);
       incorrect.textContent = "Incorrect";
       main.appendChild(incorrect);
-      disableButtons();
+      disableButtons(choiceId);
       setTimeout(pauseNext, 1500);
     }
     // Increment index
@@ -223,9 +223,12 @@ function displayQuestion() {
 }
 
 // Create function to disable buttons to prevent stacked events
-function disableButtons() {
+function disableButtons(choiceId) {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].disabled = true;
+    if (i !== choiceId) {
+      buttons[i].setAttribute("style", "background-color:gray;box-shadow: inset 0px 0px 0px gray");
+    }
   }
 }
 
@@ -358,7 +361,7 @@ listEl.addEventListener("click", function (event) {
   }
 
   // Call display question
-  displayQuestion();
+  displayQuestion(parseInt(userInput));
 });
 
 // Listen for click on submit button
