@@ -162,6 +162,7 @@ timerEl.textContent = "Time: " + timeLeft;
 
 // APPEND ELEMENTS
 
+// Append timer and h2El
 header.appendChild(timerEl);
 main.appendChild(h2El);
 
@@ -169,7 +170,7 @@ main.appendChild(h2El);
 
 // Create function used to display first question
 function displayFirst() {
-  // Show quiz section
+  // Add text content of quiz question and each choice
   h2El.textContent = quiz[0].question;
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].textContent = quiz[0].choices[i];
@@ -197,13 +198,13 @@ function displayQuestion() {
   } else {
     // Call checkAnswer
     var check = checkAnswer(userInput, quiz[index].correctAnswer);
-    console.log(quiz[index].correctAnswer);
-    console.log(userInput);
-    console.log(check);
     if (check) {
       // Correct process
+      // Append an hr element
       main.appendChild(hr);
+      // Add text to indicate correct response
       correct.textContent = "Correct!";
+      // Append correct to main
       main.appendChild(correct);
       // Disable buttons here
       disableButtons();
@@ -226,6 +227,7 @@ function displayQuestion() {
 function disableButtons() {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].disabled = true;
+    // Set attributes for desired effect of inactive buttons
     buttons[i].setAttribute(
       "style",
       "background-color:gray;box-shadow:inset 0px 0px 0px gray;"
@@ -237,6 +239,7 @@ function disableButtons() {
 function enableButtons() {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].disabled = false;
+    // Set attributes back for desired effect of interactivity
     buttons[i].setAttribute("style", "background-color:rgb(89, 4, 186);");
   }
 }
@@ -247,13 +250,17 @@ function countdown() {
     // Exit conditions
     if (quiz[index] !== undefined) {
       if (timeLeft <= 0) {
+        // Don't let time go below 0
         timeLeft = 0;
         results();
+        // Ensure time matches local storage score
         timerEl.textContent = "Time: " + timeLeft;
         clearInterval(timeInterval);
         return;
       }
+      // Decrement time
       timeLeft--;
+      // Show time decrement
       timerEl.textContent = "Time: " + timeLeft;
     }
   }, 1000);
@@ -269,6 +276,7 @@ function checkAnswer(userChoice, correctAnswer) {
       timeLeft = 0;
       return false;
     } else {
+      // Subtract 15 seconds and return false
       timeLeft -= 15;
       return false;
     }
@@ -277,8 +285,11 @@ function checkAnswer(userChoice, correctAnswer) {
 
 // Create pauseNext to use in setTimeout() to delay next question
 function pauseNext() {
+  // Set condition to proceed
   if (quiz[index] !== undefined) {
+    // Add the next question
     h2El.textContent = quiz[index].question;
+    // Iterate through buttons, adding new object's corresponding choices index
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].textContent = quiz[index].choices[i];
     }
@@ -296,16 +307,23 @@ function pauseNext() {
 
 // Create function to display results
 function results() {
+  // Clear text content in main
   main.textContent = "";
+  // Add header to results page
   resultsHeader.textContent = "Enter Your Initials";
+  // Append results header
   main.appendChild(resultsHeader);
+  // Append results input field
   main.appendChild(resultsInput);
+  // Add text content to results button
   resultsButton.textContent = "Submit";
+  // Append results button to main
   main.appendChild(resultsButton);
+  // Ensure time displays final time 
   timerEl.textContent = "Time: " + timeLeft;
 }
 
-// Create function to store highScores array
+// Create function to store scores in local memory
 function storeScore() {
   localStorage.setItem("high-scores", JSON.stringify(highScores));
 }
@@ -335,33 +353,44 @@ start.addEventListener("click", function (event) {
 // Listen for click on any multiple choice option
 listEl.addEventListener("click", function (event) {
   event.stopPropagation();
+  // Declare variable to store the event target
   var choice = event.target;
+  // Get id attribute from target and store in userInput
   userInput = choice.getAttribute("id");
+  // Call display question
   displayQuestion();
 });
 
 // Listen for click on submit button
 resultsButton.addEventListener("click", function (event) {
   event.stopPropagation();
+  // Declare variable to store user initials trimmed of white space
   var userInitials = resultsInput.value.trim();
+  // Alert user of improper usage
   if (userInitials === "") {
     response.textContent = "You must enter your initials!";
     main.appendChild(response);
   } else {
+    // Update score object with current score and initials
     scoreObj = {
       score: timeLeft,
       initials: userInitials,
     };
+    // Notify user of completed storage
     response.textContent = `Thank you!
       ${scoreObj.initials.toLocaleUpperCase()}   -  ${scoreObj.score}
       has been saved!`;
     main.appendChild(response);
+    // Push to new data to array
     highScores.push(scoreObj);
+    // Clear input field
     resultsInput.value = "";
   }
+  // Call storeScore()
   storeScore();
 });
 
 // FUNCTION CALL
 
+// Call init()
 init();
