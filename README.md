@@ -26,7 +26,7 @@ Once the user's initials have been entered successfully, they can visit the high
 
 The following gif shows the Code Quiz's appearance and functionality.
 
-![Screenshot of Code Quiz](./assets/images/codeQuiz1.gif)
+![Screenshot of Code Quiz](./assets/images/codeQuiz.gif)
 
 ## Credits
 
