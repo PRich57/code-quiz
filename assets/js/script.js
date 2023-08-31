@@ -116,6 +116,11 @@ button1.setAttribute("id", "0");
 button2.setAttribute("id", "1");
 button3.setAttribute("id", "2");
 button4.setAttribute("id", "3");
+// Set attributes for css
+button1.setAttribute("class", "qButton");
+button2.setAttribute("class", "qButton");
+button3.setAttribute("class", "qButton");
+button4.setAttribute("class", "qButton");
 
 // Add text content to timerEl so it displays on start screen
 timerEl.textContent = "Time: " + timeLeft;
@@ -186,7 +191,7 @@ function displayQuestion() {
 function disableButtons() {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].disabled = true;
-    buttons[i].setAttribute("style", "background-color:gray;");
+    buttons[i].setAttribute("style", "background-color:gray;box-shadow:inset 0px 0px 0px gray;");
   }
 }
 

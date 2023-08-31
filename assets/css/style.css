@@ -1,3 +1,4 @@
+/* Universal selector to set properties on all elements */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -5,19 +6,21 @@
   color: rgb(15, 16, 18);
 }
 
+/* Set html font size to 62.5% to make 1rem = 10px */
 html {
   font-size: 62.5%;
-  /* width: fit-content; */
 }
 
+/* Give body background color and font family */
 body {
   background-color: rgb(207, 207, 207);
   font-family: "Nunito", sans-serif;
 }
 
-#highScoresHeader {
+/* Use this id to create a flex container */
+/* #highScoresHeader {
   display: flex;
-}
+} */
 
 #highScoresMain {
   display: flex;
@@ -44,7 +47,6 @@ a:hover, button:hover {
 
 #start {
   display: flex;
-  /* text-align: center; */
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
@@ -54,7 +56,6 @@ a:hover, button:hover {
 h1 {
   font-size: 6.5rem;
   padding: 3.5rem;
-  /* text-align: center; */
 }
 
 p {
@@ -72,6 +73,12 @@ button {
   padding: 1rem;
   background-color: rgb(89, 4, 186);
   color: rgb(255, 255, 255);
+}
+
+.qButton {
+  min-width: 60rem;
+  max-width: 60rem;
+  margin-right: 5rem;
 }
 
 button:hover {
@@ -117,7 +124,7 @@ h4 {
 ol {
   display: flex;
   flex-direction: column;
-  align-content: flex-start;
+  align-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
   padding-left: 6rem;
@@ -126,11 +133,11 @@ ol {
 
 #highScoresList {
   padding-left: 0rem;
+  width: auto;
 }
 
 ol li {
   font-size: 2rem;
-  padding-left: 2rem;
 }
 
 .highScoresItems {
@@ -148,4 +155,3 @@ footer {
   justify-content: center;
   padding-right: 2.5rem;
 }
-
