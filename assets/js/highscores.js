@@ -46,7 +46,6 @@ function clearScores() {
 }
 
 clearBtn.addEventListener("click", function (event) {
-  event.preventDefault();
   event.stopPropagation();
   clearScores();
   highScorePage.textContent = "";

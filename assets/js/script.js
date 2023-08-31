@@ -14,7 +14,7 @@ var response = document.getElementById("response");
 // Declare variable for index and set to 0
 var index = 0;
 // Declare timeLeft variable
-var timeLeft = 75;
+var timeLeft = 90;
 // Declare variable to store user selection
 var userInput;
 // Declare check variable to hold a boolean value
@@ -200,8 +200,6 @@ function enableButtons() {
 
 // Create countdown function
 function countdown() {
-  timeLeft = 75;
-
   var timeInterval = setInterval(function () {
     // Exit conditions
     if (quiz[index] !== undefined) {
@@ -301,7 +299,7 @@ listEl.addEventListener("click", function (event) {
 
 // Listen for click on submit button
 resultsButton.addEventListener("click", function (event) {
-  event.preventDefault();
+  event.stopPropagation();
   var userInitials = resultsInput.value.trim();
   if (userInitials === "") {
     response.textContent = "You must enter your initials!";
