@@ -225,11 +225,6 @@ function displayQuestion() {
 function disableButtons() {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].disabled = true;
-    // Set attributes for desired effect of inactive buttons
-    buttons[i].setAttribute(
-      "style",
-      "background-color:gray;box-shadow:inset 0px 0px 0px gray;"
-    );
   }
 }
 
@@ -355,6 +350,13 @@ listEl.addEventListener("click", function (event) {
   var choice = event.target;
   // Get id attribute from target and store in userInput
   userInput = choice.getAttribute("id");
+  
+  if (userInput === quiz[index].correctAnswer) {
+    choice.setAttribute("style", "background-color:green;box-shadow:inset 0px 0px 0px green;");
+  } else if (userInput) {
+    choice.setAttribute("style", "background-color:red;box-shadow:inset 0px 0px 0px red;");
+  }
+
   // Call display question
   displayQuestion();
 });
