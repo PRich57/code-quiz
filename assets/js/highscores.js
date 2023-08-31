@@ -1,26 +1,28 @@
-var highScorePage = document.querySelector("#highScores");
-var highScoreCountSpan = document.querySelector("#scoreCount");
+var highScorePage = document.querySelector("#highScoresList");
+var footer = document.querySelector("footer");
+var h1El = document.querySelector("#h1El");
 var highScores = JSON.parse(localStorage.getItem("high-scores"));
-var scores = [];
+var clearBtn = document.createElement("button");
+clearBtn.textContent = "Clear All Scores";
+footer.appendChild(clearBtn);
 
 // Create function to render high scores
 function renderScores() {
-  highScorePage.textContent = "";
-  highScoreCountSpan.textContent = highScores.length;
+  h1El.textContent = "High Scores";
   for (var i = 0; i < highScores.length; i++) {
     // Sort by descending order function
     highScores.sort(descendingOrder);
 
-    var initials = highScores[i].initials;
+    var initials = highScores[i].initials.toUpperCase();
     var highScore = highScores[i].score;
 
     var li = document.createElement("li");
     li.textContent = initials + " - " + highScore;
     li.setAttribute("data-index", i);
+    li.setAttribute("class", "highScoresItems");
 
     highScorePage.appendChild(li);
   }
-
 }
 renderScores();
 
@@ -33,3 +35,14 @@ function descendingOrder(a, b) {
   }
   return 0;
 }
+
+function clearScores() {
+  localStorage.removeItem("high-scores");
+}
+
+clearBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+  clearScores();
+  highScorePage.textContent = "";
+});

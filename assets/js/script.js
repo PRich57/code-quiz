@@ -159,6 +159,7 @@ function displayQuestion() {
 function disableButtons(){
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].disabled = true;
+    buttons[i].setAttribute('style', 'background-color:gray;');
   }
 }
 
@@ -166,6 +167,7 @@ function disableButtons(){
 function enableButtons(){
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].disabled = false;
+    buttons[i].setAttribute('style', 'background-color:rgb(89, 4, 186);');
   }
 }
 
@@ -281,7 +283,9 @@ listEl.addEventListener("click", function(event) {
         score: timeLeft,
         initials: userInitials,
       };
-      response.textContent = "Thank you! Your score has been saved!";
+      response.textContent = `Thank you!
+      ${scoreObj.initials.toLocaleUpperCase()}   -  ${scoreObj.score}
+      has been saved!`;
       main.appendChild(response);
       highScores.push(scoreObj);
       resultsInput.value = "";

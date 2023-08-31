@@ -15,6 +15,16 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
+#highScoresHeader {
+  display: flex;
+}
+
+#highScoresMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 header {
   display: flex;
   flex-wrap: wrap;
@@ -107,13 +117,26 @@ ol {
   margin-bottom: 3rem;
 }
 
+#highScoresList {
+  padding-left: 0rem;
+}
+
 ol li {
   font-size: 2rem;
   padding-left: 2rem;
 }
 
+/* .highScoresItems {
+  padding-left: 0rem;
+} */
+
 input {
   margin: 2rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
+footer {
+  display: flex;
+  justify-content: center;
+  padding-right: 2.5rem;
+}
