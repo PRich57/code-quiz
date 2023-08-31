@@ -192,7 +192,8 @@ function displayFirst() {
 function displayQuestion() {
   // Exit condition
   if (index > quiz.length - 1) {
-    return results();
+    results();
+    return;
   } else {
     // Call checkAnswer
     var check = checkAnswer(userInput, quiz[index].correctAnswer);
@@ -279,8 +280,7 @@ function checkAnswer(userChoice, correctAnswer) {
 // Create pauseNext to use in setTimeout() to delay next question
 function pauseNext() {
   // Set condition to proceed
-  if (quiz[index] !== undefined || timeLeft !== 0) {
-    // Add the next question
+  if (quiz[index] !== undefined) {
     h2El.textContent = quiz[index].question;
     // Iterate through buttons, adding new object's corresponding choices index
     for (var i = 0; i < buttons.length; i++) {
