@@ -66,6 +66,7 @@ p {
 }
 
 button {
+  margin: .5rem;
   font-size: 2rem;
   border-radius: 1rem;
   padding: 1rem;
@@ -86,6 +87,7 @@ button:hover {
 }
 
 h2 {
+  margin: 2rem;
   font-size: 3rem;
 }
 
