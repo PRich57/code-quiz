@@ -192,8 +192,6 @@ function displayFirst() {
 function displayQuestion() {
   // Exit condition
   if (index > quiz.length - 1) {
-    // results();
-    console.log("this is the stop section");
     return;
   } else {
     // Call checkAnswer
@@ -319,7 +317,7 @@ function results() {
   resultsButton.textContent = "Submit";
   // Append results button to main
   main.appendChild(resultsButton);
-  // Ensure time displays final time 
+  // Ensure time displays final time
   timerEl.textContent = "Time: " + timeLeft;
 }
 
