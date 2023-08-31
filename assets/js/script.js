@@ -54,9 +54,9 @@ var quiz = [
 
 // Create html elements in JS for practice
 // timerEl will be the timer element
-var timerEl = document.createElement("p");
+var timerEl = document.createElement("h4");
 // h2El will hold the current question
-var h2El = document.createElement("h2")
+var h2El = document.createElement("h2");
 // listEl will hold the current list of possible answers
 var listEl = document.createElement("ol");
 // // Create the ordered list items
@@ -75,8 +75,10 @@ var buttons = [button1, button2, button3, button4];
 var hr = document.createElement("hr");
 // Declare variable to display and remove "correct"
 var correct = document.createElement("h3");
-// Declare variable to display and remove "incorrect" 
+// Declare variable to display and remove "incorrect"
 var incorrect = document.createElement("h3");
+// Create header for results page
+var resultsHeader = document.createElement("h2");
 // Create input element for results function
 var resultsInput = document.createElement("input");
 // Create submit button for results page
@@ -102,25 +104,25 @@ main.appendChild(h2El);
 
 // Create function used to display first question
 function displayFirst() {
-    // Show quiz section
-    h2El.textContent = quiz[0].question;
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].textContent = quiz[0].choices[i];
-    }
-    
-    // Append content
-    main.appendChild(listEl);
-    listEl.appendChild(li1);
-    listEl.appendChild(li2);
-    listEl.appendChild(li3);
-    listEl.appendChild(li4);
-    li1.appendChild(button1);
-    li2.appendChild(button2);
-    li3.appendChild(button3);
-    li4.appendChild(button4);
+  // Show quiz section
+  h2El.textContent = quiz[0].question;
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].textContent = quiz[0].choices[i];
+  }
+
+  // Append content
+  main.appendChild(listEl);
+  listEl.appendChild(li1);
+  listEl.appendChild(li2);
+  listEl.appendChild(li3);
+  listEl.appendChild(li4);
+  li1.appendChild(button1);
+  li2.appendChild(button2);
+  li3.appendChild(button3);
+  li4.appendChild(button4);
 }
 
-// Create function to display next question and call checkAnswer function  
+// Create function to display next question and call checkAnswer function
 function displayQuestion() {
   // Exit condition
   if (index > quiz.length - 1) {
@@ -133,7 +135,7 @@ function displayQuestion() {
     console.log(quiz[index].correctAnswer);
     console.log(userInput);
     console.log(check);
-    if (check){
+    if (check) {
       // Correct process
       main.appendChild(hr);
       correct.textContent = "Correct!";
@@ -156,18 +158,18 @@ function displayQuestion() {
 }
 
 // Create function to disable buttons to prevent stacked events
-function disableButtons(){
+function disableButtons() {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].disabled = true;
-    buttons[i].setAttribute('style', 'background-color:gray;');
+    buttons[i].setAttribute("style", "background-color:gray;");
   }
 }
 
 // Create function to enable buttons
-function enableButtons(){
+function enableButtons() {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].disabled = false;
-    buttons[i].setAttribute('style', 'background-color:rgb(89, 4, 186);');
+    buttons[i].setAttribute("style", "background-color:rgb(89, 4, 186);");
   }
 }
 
@@ -177,7 +179,7 @@ function countdown() {
 
   var timeInterval = setInterval(function () {
     // Exit conditions
-    if (quiz[index] !== undefined){
+    if (quiz[index] !== undefined) {
       if (timeLeft <= 0) {
         timeLeft = 0;
         results();
@@ -187,14 +189,13 @@ function countdown() {
       }
       timeLeft--;
       timerEl.textContent = "Time: " + timeLeft;
-      
     }
   }, 1000);
 }
 
 // Create function to check if answer is correct
 function checkAnswer(userChoice, correctAnswer) {
-  if (userChoice === correctAnswer){
+  if (userChoice === correctAnswer) {
     return true;
   } else {
     // Make sure timer goes to 0 instead of negative
@@ -209,7 +210,7 @@ function checkAnswer(userChoice, correctAnswer) {
 }
 
 // Create pauseNext to use in setTimeout() to delay next question
-function pauseNext () {  
+function pauseNext() {
   if (quiz[index] !== undefined) {
     h2El.textContent = quiz[index].question;
     for (var i = 0; i < buttons.length; i++) {
@@ -230,6 +231,8 @@ function pauseNext () {
 // Create function to display results
 function results() {
   main.textContent = "";
+  resultsHeader.textContent = "Enter Your Initials";
+  main.appendChild(resultsHeader);
   main.appendChild(resultsInput);
   resultsButton.textContent = "Submit";
   main.appendChild(resultsButton);
@@ -264,50 +267,35 @@ start.addEventListener("click", function (event) {
 });
 
 // Listen for click on any multiple choice option
-listEl.addEventListener("click", function(event) {
+listEl.addEventListener("click", function (event) {
   event.stopPropagation();
   var choice = event.target;
   userInput = choice.getAttribute("id");
   displayQuestion();
-  });
-  
-  // Listen for click on submit button
-  resultsButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    var userInitials = resultsInput.value.trim();
-    if (userInitials === "") {
-      response.textContent = "You must enter your initials!";
-      main.appendChild(response);
-    } else {
-      scoreObj = {
-        score: timeLeft,
-        initials: userInitials,
-      };
-      response.textContent = `Thank you!
+});
+
+// Listen for click on submit button
+resultsButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  var userInitials = resultsInput.value.trim();
+  if (userInitials === "") {
+    response.textContent = "You must enter your initials!";
+    main.appendChild(response);
+  } else {
+    scoreObj = {
+      score: timeLeft,
+      initials: userInitials,
+    };
+    response.textContent = `Thank you!
       ${scoreObj.initials.toLocaleUpperCase()}   -  ${scoreObj.score}
       has been saved!`;
-      main.appendChild(response);
-      highScores.push(scoreObj);
-      resultsInput.value = "";
-    }
-    storeScore();
+    main.appendChild(response);
+    highScores.push(scoreObj);
+    resultsInput.value = "";
+  }
+  storeScore();
 });
 
 // FUNCTION CALL
 
 init();
-
-
-
-
-
-
-
-
-
-// localStorage.setItem("score", JSON.stringify(scoreObj));
-// highScores = JSON.parse(localStorage.getItem("score"));
-// highScores.push(lastScore);
-// localStorage.setItem("high-scores", JSON.stringify(highScores));
-// Create results function first and get it to populate after last question or when timer <= 0 
-// fix last question not causing -15 if answered incorrectly

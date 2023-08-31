@@ -35,10 +35,11 @@ header {
 
 main {
   text-align: center;
+  margin: 0 5rem;
 }
 
 a:hover, button:hover {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 #start {
@@ -107,6 +108,10 @@ h3 {
   font-size: 3rem;
 }
 
+h4 {
+  font-weight: 500;
+}
+
 ol {
   display: flex;
   flex-direction: column;
@@ -126,13 +131,14 @@ ol li {
   padding-left: 2rem;
 }
 
-/* .highScoresItems {
-  padding-left: 0rem;
-} */
+.highScoresItems {
+  padding: 0 1.5rem;
+}
 
 input {
   margin: 2rem;
-  font-size: 2.5rem;
+  margin-left: 10rem;
+  font-size: 2.75rem;
 }
 
 footer {
@@ -140,3 +146,4 @@ footer {
   justify-content: center;
   padding-right: 2.5rem;
 }
+
