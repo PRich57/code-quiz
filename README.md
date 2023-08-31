@@ -8,6 +8,8 @@ The final product is a code related quiz that tells whether the user response wa
 
 The results page will allow the user to type in their initials to store the score in local memory. The results will be added to the High scores page which can be accessed at any point via the link in the top left corner of the page.
 
+To visit the Code Quiz click [here!](https://prich57.github.io/code-quiz/)
+
 ## Installation
 
 N/A
@@ -22,9 +24,9 @@ Once the user's initials have been entered successfully, they can visit the high
 
 ## Mock-Up
 
-The following image shows the Code Quiz's appearance and functionality.
+The following gif shows the Code Quiz's appearance and functionality.
 
-![Screenshot of Code Quiz](./assets/images/codeQuiz.png)
+![Screenshot of Code Quiz](./assets/images/codeQuiz.gif)
 
 ## Credits
 
